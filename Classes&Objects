@@ -1,0 +1,41 @@
+class CityMotors:
+    def __init__(self, Name_of_Car, Sales, Units_Sold, Highest_Performer):
+        self.Name_of_Car = Name_of_Car
+        self.Sales = Sales
+        self.Units_Sold = Units_Sold
+        self.Highest_Performer = Highest_Performer
+
+    def total_sales(self):
+        return self.Sales * self.Units_Sold
+
+    def car_data(self):
+        return {
+            'Name_of_Car': self.Name_of_Car,
+            'Sales': self.Sales,
+            'Units_Sold': self.Units_Sold,
+            'Highest_Performer': self.Highest_Performer
+        }
+
+def get_car_details():
+    name_of_car = input("Enter the Name of Car: ")
+    cost_of_sale = int(input("Enter Selling Price: "))
+    units_sold = int(input("Enter Units Sold: "))
+    return CityMotors(name_of_car, cost_of_sale, units_sold, "N/A")
+
+cars = []
+
+while True:
+    vehicle = get_car_details()
+    cars.append(vehicle)
+# Break the Code when User says No
+    another = input("Do you want to Enter More Details of Cars or done? ")
+    if another.lower() != "yes":
+        break
+
+
+best_selling_car = max(cars, key=lambda car: car.total_sales())
+
+# Print the Result of Best Selling Car
+print("Best Selling Car:")
+print(f"Name: {best_selling_car.Name_of_Car}")
+print(f"Total Sales: {best_selling_car.total_sales()}")
